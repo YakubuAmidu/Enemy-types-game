@@ -11,11 +11,17 @@ class Game {
         this.width = width;
         this.height = height;
         this.enemies = [];
+        this.enemyInterval = 400;
+        this.enemyTimer = 0;
         this.#addNewEnemy();
         console.log(this.enemies);
     }
 
     update(){
+        if(this.enemyTimer > this.enemyInterval){
+            this.#addNewEnemy();
+            this.enemyTimer = 0;
+        }
        this.enemies.forEach(object => object.update());
     }
 
