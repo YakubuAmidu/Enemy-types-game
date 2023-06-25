@@ -11,7 +11,7 @@ class Game {
         this.width = width;
         this.height = height;
         this.enemies = [];
-        this.enemyInterval = 400;
+        this.enemyInterval = 20;
         this.enemyTimer = 0;
         this.#addNewEnemy();
         console.log(this.enemies);
@@ -21,6 +21,9 @@ class Game {
         if(this.enemyTimer > this.enemyInterval){
             this.#addNewEnemy();
             this.enemyTimer = 0;
+            console.log(this.enemyInterval);
+        } else {
+            this.enemyTimer++;
         }
        this.enemies.forEach(object => object.update());
     }
