@@ -29,7 +29,7 @@ class Game {
     }
 
     draw(){
-        this.enemies.forEach(object => object.draw());
+        this.enemies.forEach(object => object.draw(this.ctx));
     }
 
     #addNewEnemy(){
