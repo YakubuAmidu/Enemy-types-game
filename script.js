@@ -11,19 +11,19 @@ class Game {
         this.width = width;
         this.height = height;
         this.enemies = [];
-        this.enemyInterval = 20;
+        this.enemyInterval = 1000;
         this.enemyTimer = 0;
         this.#addNewEnemy();
         console.log(this.enemies);
     }
 
-    update(){
+    update(deltaTime){
         if(this.enemyTimer > this.enemyInterval){
             this.#addNewEnemy();
             this.enemyTimer = 0;
-            console.log(this.enemyInterval);
+            console.log(this.enemies);
         } else {
-            this.enemyTimer++;
+            this.enemyTimer += deltaTime;
         }
        this.enemies.forEach(object => object.update());
     }
@@ -64,7 +64,7 @@ function animate(timeStamp){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const deltaTime = timeStamp - lastTime;
     lastTime = timeStamp;
-    game.update();
+    game.update(deltaTime);
     game.draw();
     // some code
     requestAnimationFrame(animate);
