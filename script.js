@@ -84,11 +84,12 @@ class Ghost extends Enemy{
         this.image = ghost;
         this.vx = Math.random() * 0.2 + 0.1;
         this.angle = 0;
+        this.curve = Math.random() * 3;
     };
 
     update(deltaTime){
       super.update(deltaTime);
-      this.y += Math.sin(this.angle) * 1;
+      this.y += Math.sin(this.angle) * this.curve;
       this.angle += 0.02;
     }
 
