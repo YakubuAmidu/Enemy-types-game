@@ -70,7 +70,6 @@ function animate(timeStamp){
     lastTime = timeStamp;
     game.update(deltaTime);
     game.draw();
-    // some code
     requestAnimationFrame(animate);
 };
 
