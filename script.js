@@ -13,7 +13,7 @@ class Game {
         this.enemies = [];
         this.enemyInterval = 500;
         this.enemyTimer = 0;
-        this.enemyTypes = ['worm', 'ghost'];
+        this.enemyTypes = ['worm', 'ghost', 'spider'];
     }
 
     update(deltaTime){
@@ -36,6 +36,7 @@ class Game {
         const randomEnemy = this.enemyTypes[Math.floor(Math.random() * this.enemyTypes.length)];
         if(randomEnemy == 'worm') this.enemies.push(new Worm(this));
         else if(randomEnemy == 'ghost') this.enemies.push(new Ghost(this));
+        else if(randomEnemy == 'spider') this.enemies.push(new Spider(this));
     //    this.enemies.sort(function(a, b){
     //     return a.y - b.y;
     //    })
@@ -108,10 +109,18 @@ class Spider extends Enemy{
          this.spriteHeight = 176;
          this.width = this.spriteWidth /2;
          this.height = this.spriteHeight /2;
-         this.x = this.game.width;
+         this.x = Math.random() * this.game.width;
          this.y = 0 - this.height;
          this.image = spider;
          this.vx = 0;
+         this.vy = 1;
+         this.maxLength = Math.random() * this.game.height;
+    }
+
+    update(deltaTime){
+        super.update(deltaTime);
+        this.y += this.vy;
+        if(this.y > 200) this.vy *= -1;
     }
 }
 
