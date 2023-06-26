@@ -11,7 +11,7 @@ class Game {
         this.width = width;
         this.height = height;
         this.enemies = [];
-        this.enemyInterval = 100;
+        this.enemyInterval = 500;
         this.enemyTimer = 0;
         this.enemyTypes = ['worm', 'ghost'];
     }
@@ -98,6 +98,20 @@ class Ghost extends Enemy{
         ctx.globalAlpha = 0.7;
         super.draw(ctx);
         ctx.restore();
+    }
+}
+
+class Spider extends Enemy{
+    constructor(game){
+        super(game);
+         this.spriteWidth = 310;
+         this.spriteHeight = 176;
+         this.width = this.spriteWidth /2;
+         this.height = this.spriteHeight /2;
+         this.x = this.game.width;
+         this.y = 0 - this.height;
+         this.image = spider;
+         this.vx = 0;
     }
 }
 
