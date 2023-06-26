@@ -34,34 +34,32 @@ class Game {
     }
 
     #addNewEnemy(){
-       this.enemies.push(new worm(this));
+       this.enemies.push(new Worm(this));
     }
 };
 
 class Enemy {
     constructor(game){
        this.game = game;
-       console.log('Game: ', this.game);
        this.markedForDeletion = false;
     }
 
     update(){
       this.x--;
-      // Remove enemies
       if(this.x < 0 - this.width) this.markedForDeletion = true;
     }
 
     draw(ctx){
-      ctx.fillRect(this.x, this.y, this.width, this.height);
+      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 }
 
-class worm extends Enemy{
+class Worm extends Enemy{
     constructor(game){
         super(game);
         this.x = this.game.width;
         this.y = Math.random() * this.game.height;
-        this.width = 200;
+        this.width = 100;
         this.height = 100;
         this.image = worm;
     }
