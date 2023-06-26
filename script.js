@@ -60,6 +60,12 @@ class Enemy {
     }
 }
 
+class worm extends Enemy{
+    constructor(){
+        
+    }
+}
+
 const game = new Game(ctx, canvas.width, canvas.height);
 
 let lastTime = 1;
