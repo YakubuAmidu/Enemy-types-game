@@ -11,7 +11,7 @@ class Game {
         this.width = width;
         this.height = height;
         this.enemies = [];
-        this.enemyInterval = 1000;
+        this.enemyInterval = 100;
         this.enemyTimer = 0;
         this.#addNewEnemy();
         console.log(this.enemies);
@@ -26,7 +26,7 @@ class Game {
         } else {
             this.enemyTimer += deltaTime;
         }
-       this.enemies.forEach(object => object.update());
+       this.enemies.forEach(object => object.update(deltaTime));
     }
 
     draw(){
@@ -35,6 +35,9 @@ class Game {
 
     #addNewEnemy(){
        this.enemies.push(new Worm(this));
+       this.enemies.sort(function(a, b){
+        return a.y - b.y;
+       })
     }
 };
 
@@ -44,24 +47,27 @@ class Enemy {
        this.markedForDeletion = false;
     }
 
-    update(){
-      this.x--;
+    update(deltaTime){
+      this.x -= this.vx * deltaTime;
       if(this.x < 0 - this.width) this.markedForDeletion = true;
     }
 
     draw(ctx){
-      ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+      ctx.drawImage(this.image, 0, 0, this.spriteWidth, this.spriteHeight, this.x, this.y, this.width, this.height);
     }
 }
 
 class Worm extends Enemy{
     constructor(game){
         super(game);
+        this.spriteWidth = 229;
+        this.spriteHeight = 171;
         this.x = this.game.width;
         this.y = Math.random() * this.game.height;
-        this.width = 100;
-        this.height = 100;
+        this.width = this.spriteWidth / 2;
+        this.height = this.spriteHeight / 2;
         this.image = worm;
+        this.vx = Math.random() * 0.1 + 0.1;
     }
 }
 
