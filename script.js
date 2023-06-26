@@ -34,7 +34,7 @@ class Game {
     }
 
     #addNewEnemy(){
-       this.enemies.push(new Enemy(this));
+       this.enemies.push(new worm(this));
     }
 };
 
@@ -42,10 +42,6 @@ class Enemy {
     constructor(game){
        this.game = game;
        console.log('Game: ', this.game);
-       this.x = this.game.width;
-       this.y = Math.random() * this.game.height;
-       this.width = 100;
-       this.height = 100;
        this.markedForDeletion = false;
     }
 
@@ -61,8 +57,13 @@ class Enemy {
 }
 
 class worm extends Enemy{
-    constructor(){
-        
+    constructor(game){
+        super(game);
+        this.x = this.game.width;
+        this.y = Math.random() * this.game.height;
+        this.width = 100;
+        this.height = 100;
+        this.image = worm;
     }
 }
 
