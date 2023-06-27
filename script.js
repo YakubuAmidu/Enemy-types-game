@@ -21,7 +21,6 @@ class Game {
         if(this.enemyTimer > this.enemyInterval){
             this.#addNewEnemy();
             this.enemyTimer = 0;
-            console.log(this.enemies);
         } else {
             this.enemyTimer += deltaTime;
         }
@@ -37,9 +36,6 @@ class Game {
         if(randomEnemy == 'worm') this.enemies.push(new Worm(this));
         else if(randomEnemy == 'ghost') this.enemies.push(new Ghost(this));
         else if(randomEnemy == 'spider') this.enemies.push(new Spider(this));
-    //    this.enemies.sort(function(a, b){
-    //     return a.y - b.y;
-    //    })
     }
 };
 
